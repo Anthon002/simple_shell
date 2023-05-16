@@ -7,6 +7,7 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
+#include <sys/types.h>
 extern char **environ;
 
 #define MAX_COMMAND_LENGTH 2048
