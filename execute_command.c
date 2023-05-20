@@ -24,27 +24,39 @@ void exeCmd(char *cmd)
 	}
 	if (bus[0] != NULL)
 	{
-		if (!_cmd_ext(bus[0]))
+		if (_strcmp(bus[0], "exit") == 0)
 		{
-			write(STDOUT_FILENO, "No such file or directory \n", 26);
+			exit_func();
+		}
+		else if (!_cmd_ext(bus[0]))
+		{
+			write(STDOUT_FILENO, bus[0], _strlen(bus[0]));
+			write(STDOUT_FILENO, ": ", 2);
+			write(STDOUT_FILENO, "not found\n", 10);
 		}
 		else
 		{
-			                pid = fork();
-                if (pid == -1)
-                {
-                    perror("fork");
-                    _exit(EXIT_FAILURE);
-                }
-                else if (pid == 0)
-                {
-                    execvp(bus[0], bus);
-                    _exit(EXIT_FAILURE);
-                }
-                else
-                {
-                    wait(&tree);
-                }
+			pid = fork();
+			if (pid == -1)
+			{
+				perror("fork");
+				_exit(EXIT_FAILURE);
+			}
+			else if (pid == 0)
+			{
+				execvp(bus[0], bus);
+				_exit(EXIT_FAILURE);
+			}
+			else if (pid == 0)
+			{
+				execlp(bus[0], bus[0], (char *)NULL);
+				_exit(EXIT_FAILURE);
+			}
+
+			else
+			{
+				wait(&tree);
+			}
 		}
 	}
 }
