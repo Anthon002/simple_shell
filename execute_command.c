@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * execute_command - execute_command
- * @command: char command
+ * exeCmd - execute_command
+ * @cmd: char command
  * Return: void;
  */
-void execute_command(char *command)
+void exeCmd(char *cmd)
 {
 	char *tok, *bus[64];
 	int tree, i;
@@ -15,7 +15,7 @@ void execute_command(char *command)
 		bus[i] = NULL;
 	}
 	i = 0;
-	tok = strtok(command, " \t\n");
+	tok = strtok(cmd, " \t\n");
 	while (tok != NULL && i < 63)
 	{
 		bus[i] = tok;
@@ -24,27 +24,27 @@ void execute_command(char *command)
 	}
 	if (bus[0] != NULL)
 	{
-		if (access(bus[0], X_OK) != 0)
+		if (!_cmd_ext(bus[0]))
 		{
-			write(STDOUT_FILENO, "No such file or directory\n", 26);
+			write(STDOUT_FILENO, "No such file or directory \n", 26);
 		}
 		else
 		{
-			pid = fork();
-			if (pid == -1)
-			{
-				perror("fork");
-				_exit(EXIT_FAILURE);
-			}
-			else if (pid == 0)
-			{
-				execve(bus[0], bus, NULL);
-				_exit(EXIT_FAILURE);
-			}
-			else
-			{
-				wait(&tree);
-			}
+			                pid = fork();
+                if (pid == -1)
+                {
+                    perror("fork");
+                    _exit(EXIT_FAILURE);
+                }
+                else if (pid == 0)
+                {
+                    execvp(bus[0], bus);
+                    _exit(EXIT_FAILURE);
+                }
+                else
+                {
+                    wait(&tree);
+                }
 		}
 	}
 }

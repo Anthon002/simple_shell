@@ -6,14 +6,14 @@
 
 void setup_signal_handlers(void)
 {
-	struct sigaction sa_eof, sa_int;
+	struct sigaction sf, st;
 
-	sa_int.sa_handler = handle_sigint;
-	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = 0;
-	sigaction(SIGINT, &sa_int, NULL);
-	sa_eof.sa_handler = handle_eof;
-	sigemptyset(&sa_eof.sa_mask);
-	sa_eof.sa_flags = 0;
-	sigaction(SIGTSTP, &sa_eof, NULL);
+	st.sa_handler = handle_sigint;
+	sigemptyset(&st.sa_mask);
+	st.sa_flags = 0;
+	sigaction(SIGINT, &st, NULL);
+	sf.sa_handler = handle_eof;
+	sigemptyset(&sf.sa_mask);
+	sf.sa_flags = 0;
+	sigaction(SIGTSTP, &sf, NULL);
 }

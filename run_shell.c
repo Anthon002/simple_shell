@@ -26,6 +26,6 @@ void run_shell(void)
 		}
 		if (car[t_to - 1] == '\n')
 			car[t_to - 1] = '\0';
-		execute_command(car);
+		exeCmd(car);
 	}
 }

@@ -19,8 +19,7 @@ void handle_sigint(int signum);
 void setup_signal_handlers();
 void run_shell();
 void handle_eof(int signum);
-void execute_command(char *command);
-
+void exeCmd(char *command);
 int _passing_arguments(char *strline, char **args);
 
 #define MAX_COMMAND_LENGTH 2048
