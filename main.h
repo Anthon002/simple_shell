@@ -21,6 +21,10 @@ void run_shell();
 void handle_eof(int signum);
 void exeCmd(char *command);
 void exit_func();
+int _strlen(char* str);
+int _strncmp(char* ch1, char* ch2, int n);
+char* _getenv(char* name);
+bool _cmd_ext(const char *cmd);
 
 #define MAX_COMMAND_LENGTH 2048
 
