@@ -25,6 +25,7 @@ int _strlen(char* str);
 int _strncmp(char* ch1, char* ch2, int n);
 char* _getenv(char* name);
 bool _cmd_ext(const char *cmd);
+int _strcmp(char *ch1, char *ch2);
 
 #define MAX_COMMAND_LENGTH 2048
 
