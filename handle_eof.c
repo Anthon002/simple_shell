@@ -1,11 +1,11 @@
 #include "main.h"
 /**
  * handle_eof - handles Ctrl + D
- * @signum: value
+ * @sig: value
  * Return: void
  */
-void handle_eof(int signum)
+void handle_eof(int sig)
 {
-	(void)signum;
+	(void)sig;
 	h_hs = 1;
 }

@@ -1,27 +1,63 @@
 #include "main.h"
 /**
- * exeCmd - execute_command
- * @cmd: char command
- * Return: void;
+ * parseCmd - parsing command
+ * @cmd: command
+ * @bus: charcter
  */
-void exeCmd(char *cmd)
+void parseCmd(char *cmd, char *bus[])
 {
-	char *tok, *bus[64];
-	int tree, i;
-	pid_t pid;
+	int i = 0;
+	char *tok = strtok(cmd, " \t\n");
 
-	for (i = 0; i < 64; i++)
-	{
-		bus[i] = NULL;
-	}
-	i = 0;
-	tok = strtok(cmd, " \t\n");
 	while (tok != NULL && i < 63)
 	{
 		bus[i] = tok;
 		tok = strtok(NULL, " \t\n");
 		i++;
 	}
+	bus[i] = NULL;
+}
+/**
+ * executeCmd - execute command
+ * @bus: array
+ * Return:void
+ */
+void executeCmd(char *bus[])
+{
+	pid_t pid = fork();
+	int tree;
+
+	if (pid == -1)
+	{
+		perror("fork");
+		_exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execvp(bus[0], bus);
+		_exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&tree);
+	}
+}
+/**
+ * exeCmd - main
+ * @cmd: command
+ * Return: void
+ */
+void exeCmd(char *cmd)
+{
+	char *bus[64];
+	int i = 0;
+
+	while (i < 64)
+	{
+		bus[i] = NULL;
+		i++;
+	}
+	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
 		if (_strcmp(bus[0], "exit") == 0)
@@ -36,27 +72,7 @@ void exeCmd(char *cmd)
 		}
 		else
 		{
-			pid = fork();
-			if (pid == -1)
-			{
-				perror("fork");
-				_exit(EXIT_FAILURE);
-			}
-			else if (pid == 0)
-			{
-				execvp(bus[0], bus);
-				_exit(EXIT_FAILURE);
-			}
-			else if (pid == 0)
-			{
-				execlp(bus[0], bus[0], (char *)NULL);
-				_exit(EXIT_FAILURE);
-			}
-
-			else
-			{
-				wait(&tree);
-			}
+			executeCmd(bus);
 		}
 	}
 }

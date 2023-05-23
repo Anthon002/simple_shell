@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * handle_sigint - handles sigin
- * @signum: int
+ * hansig1 - handles sigin
+ * @sig: int
  * Return: void
  */
-void handle_sigint(int signum)
+void hansig1(int sig)
 {
-	(void)signum;
+	(void)sig;
 	write(STDOUT_FILENO, "\n$ ", 3);
 	fflush(stdout);
 }

@@ -15,7 +15,6 @@ int _strlen(char *str)
 	return (ln);
 }
 
-
 /**
  * _strcmp - same as strcmp
  * @ch1: first character
@@ -24,12 +23,12 @@ int _strlen(char *str)
  */
 int _strcmp(char *ch1, char *ch2)
 {
-        int r;
-        do {
+	int r;
+
+	do {
 		r = *ch1 - *ch2;
 		ch1++;
 		ch2++;
-        }
-	while(*ch1 != '\0' && *ch1 != '\0' && r == 0);
-	return r;
+	} while (*ch1 != '\0' && *ch1 != '\0' && r == 0);
+	return (r);
 }

@@ -8,12 +8,12 @@
 char *_getenv(char *nm)
 {
 	int j = 0;
-	int nm_ln = _strlen(nm);
+	int n_l = _strlen(nm);
 
 	do {
-		if (environ[j] && !_strncmp(environ[j], nm, nm_ln) && environ[j][nm_ln] == '=')
+		if (environ[j] && !_strncmp(environ[j], nm, n_l) && environ[j][n_l] == '=')
 		{
-			(return &(environ[j][nm_ln + 1]));
+			return (&(environ[j][n_l + 1]));
 		};
 		j++;
 	}
@@ -41,5 +41,5 @@ int _strncmp(char *ch1, char *ch2, int n)
 	}
 
 	while (i < n - 1);
-	(return (int)(ch1[i] - ch2[i]));
+	return ((int)(ch1[i] - ch2[i]));
 }
