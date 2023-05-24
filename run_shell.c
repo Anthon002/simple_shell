@@ -11,7 +11,7 @@ void run_shell(void)
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDOUT_FILENO, "($) ", 4);
 		fflush(stdout);
 		t_to = read(STDIN_FILENO, car, sizeof(car));
 		if (t_to == -1)
