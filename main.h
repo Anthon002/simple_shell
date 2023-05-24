@@ -27,7 +27,6 @@ char* _getenv(char* name);
 bool _cmd_ext(const char *cmd);
 int _strcmp(char *ch1, char *ch2);
 void _sigemptyset(sigset_t *st);
-int _at(const char* str);
 #define MAX_COMMAND_LENGTH 2048
 
 #endif
