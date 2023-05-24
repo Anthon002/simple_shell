@@ -4,9 +4,9 @@
  * @sts: sts
  * Return: void
  */
-void exit_func()
+void exit_func(char *sts)
 {
-/*	int es;
+	int es;
 
 	if (sts == NULL)
 	{
@@ -16,6 +16,5 @@ void exit_func()
 	{
 		es = atoi(sts);
 		exit(es);
-	}*/
-	exit(EXIT_SUCCESS);
+	}
 }

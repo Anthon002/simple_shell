@@ -11,8 +11,6 @@ void run_shell(void)
 
 	while (1)
 	{
-		/* write(STDOUT_FILENO, "($) ", 4);
-		fflush(stdout); */
 		t_to = read(STDIN_FILENO, car, sizeof(car));
 		if (t_to == -1)
 		{
@@ -21,7 +19,6 @@ void run_shell(void)
 		}
 		else if (t_to == 0)
 		{
-		/*	write(STDOUT_FILENO, "\n", 1);*/
 			break;
 		}
 		if (car[t_to - 1] == '\n')
