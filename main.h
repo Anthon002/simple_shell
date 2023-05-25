@@ -28,6 +28,8 @@ bool _cmd_ext(const char *cmd);
 int _strcmp(const char *ch1, char *ch2);
 void _sigemptyset(sigset_t *st);
 int _at(const char *s);
+void exe_cd(const char *str);
+void handle_sep(char *cmd);
 #define MAX_COMMAND_LENGTH 2048
 
 #endif
