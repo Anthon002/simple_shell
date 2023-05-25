@@ -20,7 +20,7 @@ void setup_signal_handlers();
 void run_shell();
 void handle_eof(int signum);
 void exeCmd(char *command);
-void exit_func();
+void exit_func(char *sts);
 int _strlen(char* str);
 int _strncmp(char* ch1, char* ch2, int n);
 char* _getenv(char* name);

@@ -39,7 +39,6 @@ void exe_cd(const char *str)
 	{
 		return;
 	}
-
 	if (chdir(dy) != 0)
 	{
 		perror("chdir");
