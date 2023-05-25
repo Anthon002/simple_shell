@@ -8,18 +8,18 @@ void handle_sep(char *cmd)
 	int i = 0;
 	int j = 0;
 	char *tok = strtok(cmd, ";");
-	char *commands[10];
+	char *cmds[10];
 
 	while (tok != NULL && i < 10)
 	{
-		commands[i] = tok;
+		cmds[i] = tok;
 		tok = strtok(NULL, ";");
 		i++;
 	}
 
 	while (j < i)
 	{
-		exeCmd(commands[j]);
+		exeCmd(cmds[j]);
 		j++;
 	};
 }
