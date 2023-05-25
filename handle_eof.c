@@ -6,6 +6,7 @@
  */
 void handle_eof(int sig)
 {
+/*	sig_atomic_t h_hs = 0;*/
 	(void)sig;
-	h_hs = 1;
+/*	h_hs = 1;*/
 }

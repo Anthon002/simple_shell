@@ -7,6 +7,7 @@
 
 char *_getenv(char *nm)
 {
+	char **environ = NULL;
 	int j = 0;
 	int n_l = _strlen(nm);
 

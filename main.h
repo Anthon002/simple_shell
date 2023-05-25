@@ -13,17 +13,15 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-extern char **environ;
-volatile sig_atomic_t h_hs;
 void hansig1(int sig);
-void setup_signal_handlers();
-void run_shell();
+void setup_signal_handlers(void);
+void run_shell(void);
 void handle_eof(int signum);
 void exeCmd(char *command);
 void exit_func(char *sts);
-int _strlen(char* str);
-int _strncmp(char* ch1, char* ch2, int n);
-char* _getenv(char* name);
+int _strlen(char *str);
+int _strncmp(char *ch1, char *ch2, int n);
+char *_getenv(char *name);
 bool _cmd_ext(const char *cmd);
 int _strcmp(const char *ch1, char *ch2);
 void _sigemptyset(sigset_t *st);
