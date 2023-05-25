@@ -21,7 +21,7 @@ int _strlen(char *str)
  * @ch2: second character
  * Return: result
  */
-int _strcmp(char *ch1, char *ch2)
+int _strcmp(const char *ch1, char *ch2)
 {
 	int r;
 

@@ -8,13 +8,23 @@ void exit_func(char *sts)
 {
 	int es;
 
-	if (sts == NULL)
+	if (sts != NULL)
 	{
-		exit(EXIT_SUCCESS);
+		switch (*sts)
+		{
+			case '0':
+				es = 0;
+				break;
+			case '1':
+				es = 1;
+				break;
+			case '2':
+				es = 2;
+				break;
+			default:
+				es = _at(sts);
+				break;
+		}
 	}
-	else
-	{
-		es = atoi(sts);
-		exit(es);
-	}
+	exit(es);
 }
