@@ -34,6 +34,8 @@ void executeCmd(char *bus[])
 	}
 	else if (pid == 0)
 	{
+		execvp(bus[0], bus);
+		_exit(EXIT_FAILURE);
 		if (execvp(bus[0], bus) == -1)
 		{
 			perror("execvp");
@@ -67,11 +69,15 @@ void exeCmd(char *cmd)
 	{
 		if (_strcmp(bus[0], "exit") == 0)
 		{
-			exit_func(bus[1]);
+			exit_func();
 		}
 		else if (_strcmp(bus[0], "cd") == 0)
 		{
 			exe_cd(bus[1]);
+		}
+		else if (_strcmp(bus[0], "env") == 0)
+		{
+			exe_env();
 		}
 		else if (!_cmd_ext(bus[0]))
 		{

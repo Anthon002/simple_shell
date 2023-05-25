@@ -10,7 +10,7 @@ char *gd(const char *arg)
 
 	if (arg == NULL || _strcmp(arg, "-") == 0)
 	{
-		dy = _getenv("OLDPWD");
+		dy = getenv("OLDPWD");
 		if (dy == NULL)
 		{
 			write(STDOUT_FILENO, "cd: OLDPWD not set\n", 19);
