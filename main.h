@@ -17,7 +17,8 @@ void hansig1(int sig);
 void setup_signal_handlers(void);
 void run_shell(void);
 void handle_eof(int signum);
-void exeCmd(char *command);
+void exeCmd(char *cmd);
+void executeCmd(char *bus[]);
 void exit_func(char *sts);
 int _strlen(char *str);
 int _strncmp(char *ch1, char *ch2, int n);
@@ -28,6 +29,7 @@ void _sigemptyset(sigset_t *st);
 int _at(const char *s);
 void exe_cd(const char *str);
 void handle_sep(char *cmd);
+void parseCmd(char *cmd, char *bus[]);
 #define MAX_COMMAND_LENGTH 2048
 
 #endif

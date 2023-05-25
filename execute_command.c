@@ -34,12 +34,17 @@ void executeCmd(char *bus[])
 	}
 	else if (pid == 0)
 	{
-		execvp(bus[0], bus);
-		_exit(EXIT_FAILURE);
+		if (execvp(bus[0], bus) == -1)
+		{
+			perror("execvp");
+	/*	execvp(bus[0], bus);*/
+			_exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
-		wait(&tree);
+	/*	wait(&tree); */
+		waitpid(pid, &tree, 0);
 	}
 }
 /**

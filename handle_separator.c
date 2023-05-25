@@ -7,8 +7,9 @@ void handle_sep(char *cmd)
 {
 	int i = 0;
 	int j = 0;
+	int k = 0;
 	char *tok = strtok(cmd, ";");
-	char *cmds[10];
+	char *cmds[10], *toks[64];
 
 	while (tok != NULL && i < 10)
 	{
@@ -19,7 +20,20 @@ void handle_sep(char *cmd)
 
 	while (j < i)
 	{
-		exeCmd(cmds[j]);
+		/*
+		 * exeCmd(cmds[j]);
+		j++;
+		*/
+		while (k < 64)
+		{
+			toks[k] = NULL;
+			k++;
+		}
+		parseCmd(cmds[j], toks);
+		if (toks[0] != NULL)
+		{
+			executeCmd(toks);
+		}
 		j++;
 	};
 }
