@@ -50,13 +50,11 @@ void executeCmd(char *bus[])
 	}
 }
 /**
- * exeCmd - main
- * @cmd: command
- * Return: void
+ * fill - fills up bus
+ * @bus: array
  */
-void exeCmd(char *cmd)
+void fill(char *bus[])
 {
-	char *bus[64];
 	int i = 0;
 
 	while (i < 64)
@@ -64,6 +62,17 @@ void exeCmd(char *cmd)
 		bus[i] = NULL;
 		i++;
 	}
+}
+/**
+ * exeCmd - main
+ * @cmd: command
+ * Return: void
+ */
+void exeCmd(char *cmd)
+{
+	char *bus[64];
+
+	fill(bus);
 	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
@@ -86,9 +95,13 @@ void exeCmd(char *cmd)
 			write(STDOUT_FILENO, ": ", 2);
 			write(STDOUT_FILENO, "not found\n", 10);
 		}
-		else if (strcmp(bus[0], "echo") == 0 && bus[1] != NULL)
+		else if (_strcmp(bus[0], "setenv") == 0)
 		{
-			exeEcho(bus[1]);
+			exeSet(bus[1], bus[2]);
+		}
+		else if (_strcmp(bus[0], "unsetenv") == 0)
+		{
+			exeUnset(bus[1]);
 		}
 		else
 		{

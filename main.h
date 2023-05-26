@@ -42,6 +42,8 @@ void _hfs(char *s, const char *ft, va_list *as, int *ws, int *sx, int *i);
 void int_Str(int n, char *s);
 int cp_str(char *s, int *sx, const char *src);
 int pro_f(char *s, const char *ft, va_list as);
+void exeSet(const char *var, const char *val);
+void exeUnset(const char *var);
 #define MAX_COMMAND_LENGTH 2048
 
 #endif
