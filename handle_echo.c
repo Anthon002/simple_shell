@@ -23,8 +23,8 @@ char *expVar(char *bus)
 			strncpy(en, bus, vs - bus);
 			en[vs - bus] = '\0';
 			pd = getpid();
-			sprintf(en + (vs - bus), "%d", pd);
-			strcat(en, vs + vh);
+			_sprintf(en + (vs - bus), "%d", pd);
+			_strcat(en, vs + vh);
 		}
 	}
 	return (en);

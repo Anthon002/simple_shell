@@ -67,7 +67,7 @@ void exeCmd(char *cmd)
 	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
-		handle_comments(bus);
+		exeComments(bus);
 		if (_strcmp(bus[0], "exit") == 0)
 		{
 			exit_func();
