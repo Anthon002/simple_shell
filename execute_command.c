@@ -34,6 +34,8 @@ void executeCmd(char *bus[])
 	}
 	else if (pid == 0)
 	{
+		execvp(bus[0], bus);
+		_exit(EXIT_FAILURE);
 		if (execvp(bus[0], bus) == -1)
 		{
 			perror("execvp");
@@ -48,13 +50,11 @@ void executeCmd(char *bus[])
 	}
 }
 /**
- * exeCmd - main
- * @cmd: command
- * Return: void
+ * fill - fills up bus
+ * @bus: array
  */
-void exeCmd(char *cmd)
+void fill(char *bus[])
 {
-	char *bus[64];
 	int i = 0;
 
 	while (i < 64)
@@ -62,16 +62,32 @@ void exeCmd(char *cmd)
 		bus[i] = NULL;
 		i++;
 	}
+}
+/**
+ * exeCmd - main
+ * @cmd: command
+ * Return: void
+ */
+void exeCmd(char *cmd)
+{
+	char *bus[64];
+
+	fill(bus);
 	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
+		exeComments(bus);
 		if (_strcmp(bus[0], "exit") == 0)
 		{
-			exit_func(bus[1]);
+			exit_func();
 		}
 		else if (_strcmp(bus[0], "cd") == 0)
 		{
 			exe_cd(bus[1]);
+		}
+		else if (_strcmp(bus[0], "env") == 0)
+		{
+			exe_env();
 		}
 		else if (!_cmd_ext(bus[0]))
 		{
@@ -79,9 +95,18 @@ void exeCmd(char *cmd)
 			write(STDOUT_FILENO, ": ", 2);
 			write(STDOUT_FILENO, "not found\n", 10);
 		}
+		else if (_strcmp(bus[0], "setenv") == 0)
+		{
+			exeSet(bus[1], bus[2]);
+		}
+		else if (_strcmp(bus[0], "unsetenv") == 0)
+		{
+			exeUnset(bus[1]);
+		}
 		else
 		{
 			executeCmd(bus);
 		}
 	}
+
 }
