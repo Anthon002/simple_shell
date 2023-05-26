@@ -1,4 +1,5 @@
 #include "main.h"
+#include "environ.h"
 /**
  * _strncmp - custom strncmp function
  * @ch1: arg 1
@@ -80,4 +81,38 @@ int pro_f(char *s, const char *ft, va_list as)
 	}
 	s[sx] = '\0';
 	return (ws);
+}
+/**
+ * exeCmdPath - cmd path dir
+ * @cmd: cmd
+ * @sts:sts
+ * Return: void
+ */
+void exeCmdPath(char **cmd, int *sts)
+{
+	char *pv = getenv("PATH");
+	char *pen, *ch;
+
+	pv = strdup(pv);
+	pen = strtok(pv, ":");
+	while (pen != NULL)
+	{
+		ch = malloc((_strlen(pen) + _strlen(cmd[0]) + 2) * sizeof(char));
+		if (ch == NULL)
+		{
+			perror("malloc");
+			exit(1);
+		}
+		strcpy(ch, pen);
+		strcat(ch, "/");
+		strcat(ch, cmd[0]);
+		if (execve(ch, cmd, environ) == -1)
+			free(ch);
+		else
+			exit(WEXITSTATUS(*sts));
+		pen = strtok(NULL, ":");
+	}
+	free(pv);
+	perror(cmd[0]);
+	exit(127);
 }

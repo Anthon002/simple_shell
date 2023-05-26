@@ -1,4 +1,5 @@
 #include "main.h"
+#include "environ.h"
 /**
  * parseCmd - parsing command
  * @cmd: command
@@ -34,19 +35,26 @@ void executeCmd(char *bus[])
 	}
 	else if (pid == 0)
 	{
-		execvp(bus[0], bus);
-		_exit(EXIT_FAILURE);
-		if (execvp(bus[0], bus) == -1)
+		if (_strchr(bus[0], '/') != NULL)
 		{
-			perror("execvp");
-	/*	execvp(bus[0], bus);*/
-			_exit(EXIT_FAILURE);
+			if (execve(bus[0], bus, environ) == -1)
+			{
+				perror(bus[0]);
+				exit(127);
+			}
+		}
+		else
+		{
+			exeCmdPath(bus, &tree);
 		}
 	}
 	else
 	{
-	/*	wait(&tree); */
-		waitpid(pid, &tree, 0);
+		wait(&tree);
+		if (WIFEXITED(tree) && WEXITSTATUS(tree) != 0)
+		{
+			psExitSts(tree);
+		}
 	}
 }
 /**
@@ -76,7 +84,6 @@ void exeCmd(char *cmd)
 	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
-		exeComments(bus);
 		if (_strcmp(bus[0], "exit") == 0)
 		{
 			exit_func();
@@ -108,5 +115,4 @@ void exeCmd(char *cmd)
 			executeCmd(bus);
 		}
 	}
-
 }
