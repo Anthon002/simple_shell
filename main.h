@@ -31,6 +31,9 @@ void exe_cd(const char *str);
 void handle_sep(char *cmd);
 void parseCmd(char *cmd, char *bus[]);
 void exe_env(void);
+void handle_comments(char **tokens);
+void exeEcho(char *tn);
+char *expVar(char *bus);
 #define MAX_COMMAND_LENGTH 2048
 
 #endif

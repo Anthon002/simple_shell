@@ -67,6 +67,7 @@ void exeCmd(char *cmd)
 	parseCmd(cmd, bus);
 	if (bus[0] != NULL)
 	{
+		handle_comments(bus);
 		if (_strcmp(bus[0], "exit") == 0)
 		{
 			exit_func();
@@ -85,9 +86,14 @@ void exeCmd(char *cmd)
 			write(STDOUT_FILENO, ": ", 2);
 			write(STDOUT_FILENO, "not found\n", 10);
 		}
+		else if (strcmp(bus[0], "echo") == 0 && bus[1] != NULL)
+		{
+			exeEcho(bus[1]);
+		}
 		else
 		{
 			executeCmd(bus);
 		}
 	}
+
 }
